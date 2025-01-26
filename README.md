@@ -24,7 +24,7 @@
 - Node.js (建议使用 v16+)
 - Yarn (建议使用 v1.22+)
 - Hardhat (项目已内置)
-- 数据库（例如 PostgreSQL 或 MongoDB，需提前配置）
+- 数据库（例如 MYSQL，需提前配置）
 
 ---
 
@@ -38,18 +38,18 @@
 yarn chain
 ```
 
-如果使用测试链（例如 Goerli、Sepolia 等）进行部署，需要修改如下配置文件：
+如果使用测试链（例如 Sepolia 等）进行部署，需要修改如下配置文件：
 
 1. 修改 `packages/hardhat/hardhat.config.ts` 文件，将 `defaultNetwork` 从 `localhost` 更改为目标测试链，例如：
 
    ```ts
-   defaultNetwork: "goerli",  // 或其他测试链
+   defaultNetwork: "Sepolia",  // 或其他测试链
    ```
 
 2. 修改 `packages/nextjs/scaffold.config.ts` 文件，将 `targetNetworks` 中的 `chain.hardhat` 从 `hardhat` 更改为对应测试链，例如：
 
    ```ts
-   targetNetworks: [chain.goerli],  // 或其他测试链
+   targetNetworks: [chain.Sepolia],  // 或其他测试链
    ```
 
 > **注意**：如果使用测试链部署，则无需运行 `yarn chain`。
@@ -93,7 +93,6 @@ yarn start
 ├── packages
 │   ├── hardhat         # 智能合约开发与部署
 │   ├── nextjs          # 前端应用 (React + Next.js)
-│   ├── subgraph        # TheGraph 数据索引 (可选)
 │   └── server          # 后端数据库服务
 ├── README.md           # 项目说明文档
 └── yarn.lock           # 依赖管理
@@ -105,24 +104,14 @@ yarn start
 
 如果希望将项目部署到测试链，执行以下步骤：
 
-1. 在 `packages/hardhat/hardhat.config.ts` 中配置测试网络：
 
-   ```ts
-   networks: {
-      goerli: {
-         url: "https://goerli.infura.io/v3/YOUR_INFURA_PROJECT_ID",
-         accounts: ["0x你的私钥"]
-      }
-   }
-   ```
-
-2. 在终端执行部署命令：
+1. 在终端执行部署命令：
 
    ```bash
    yarn deploy --network goerli
    ```
 
-3. 更新前端 `scaffold.config.ts` 文件，并重新启动前端应用：
+2. 更新前端 `scaffold.config.ts` 文件，并重新启动前端应用：
 
    ```bash
    yarn start
@@ -137,7 +126,6 @@ yarn start
 **解决方案**：
 
 - 确保 `yarn chain` 已正确运行。
-- 确保在 `.env` 文件中配置了正确的 RPC 连接。
 
 #### 问题 2：前端无法正常展示 NFT 数据？
 
@@ -152,25 +140,6 @@ yarn start
 - 尝试增加部署时的 gas 限制，例如在 `yarn deploy` 时使用 `--gas-limit` 参数。
 
 ---
-
-### 6. 贡献指南
-
-欢迎任何人贡献代码，步骤如下：
-
-1. Fork 本项目
-2. 创建新分支 `git checkout -b feature-new-feature`
-3. 提交更改 `git commit -m "Add new feature"`
-4. 推送到远程分支 `git push origin feature-new-feature`
-5. 提交 Pull Request
-
----
-
-### 7. 联系方式
-
-如果您在使用过程中遇到问题，请随时联系：
-
-- GitHub Issues: [提交问题](https://github.com/18270626187/scaffold-eth-NFT/issues)
-- 邮箱: [support@example.com](mailto\:support@example.com)
 
 ---
 
