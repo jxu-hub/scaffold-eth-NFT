@@ -139,9 +139,6 @@ yarn start
 
 - 尝试增加部署时的 gas 限制，例如在 `yarn deploy` 时使用 `--gas-limit` 参数。
 
----
-
----
 
 ### 8. 许可证
 
