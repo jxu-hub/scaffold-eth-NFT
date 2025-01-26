@@ -43,13 +43,13 @@ yarn chain
 1. 修改 `packages/hardhat/hardhat.config.ts` 文件，将 `defaultNetwork` 从 `localhost` 更改为目标测试链，例如：
 
    ```ts
-   defaultNetwork: "Sepolia",  // 或其他测试链
+   defaultNetwork: "sepolia",  // 或其他测试链
    ```
 
 2. 修改 `packages/nextjs/scaffold.config.ts` 文件，将 `targetNetworks` 中的 `chain.hardhat` 从 `hardhat` 更改为对应测试链，例如：
 
    ```ts
-   targetNetworks: [chain.Sepolia],  // 或其他测试链
+   targetNetworks: [chain.sepolia],  // 或其他测试链
    ```
 
 > **注意**：如果使用测试链部署，则无需运行 `yarn chain`。
