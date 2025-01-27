@@ -149,7 +149,9 @@ NEXT_PUBLIC_PINATA_JWT=your_pinata_api_key_here
 **解决方案**：
 - 尝试增加部署时的 gas 限制，例如在 `yarn deploy` 时使用 `--gas-limit` 参数。
 
-### 9. 许可证
+---
+
+### 7. 许可证
 
 本项目基于 MIT 许可证开源，详细内容请查阅 `LICENSE` 文件。
 
