@@ -41,7 +41,7 @@ yarn chain
 如果使用测试链（例如 Sepolia 等）进行部署，需要修改如下配置文件：
 
 1. 修改 `packages/hardhat/hardhat.config.ts` 文件，将 `defaultNetwork` 从 `localhost` 更改为目标测试链，例如：
-
+   
    ```ts
    defaultNetwork: "sepolia",  // 或其他测试链
    ```
@@ -86,7 +86,23 @@ yarn start
 
 ---
 
-### 3. 目录结构
+### 3. 配置环境变量
+
+在 `packages/nextjs` 目录下，需要添加一个 `.env` 文件，并在其中存储变量 `NEXT_PUBLIC_PINATA_JWT`，其值为从 Pinata 平台获取的 API 密钥。否则，在上传 NFT 到 IPFS 时可能会报错：
+
+```
+POST https://api.pinata.cloud/pinning/pinFileToIPFS 401 (Unauthorized)
+```
+
+示例 `.env` 文件内容：
+
+```
+NEXT_PUBLIC_PINATA_JWT=your_pinata_api_key_here
+```
+
+---
+
+### 4. 目录结构
 
 ```
 .
@@ -100,7 +116,7 @@ yarn start
 
 ---
 
-### 4. 部署到测试链
+### 5. 部署到测试链
 
 如果希望将项目部署到测试链，执行以下步骤：
 
@@ -108,7 +124,7 @@ yarn start
 1. 在终端执行部署命令：
 
    ```bash
-   yarn deploy --network goerli
+   yarn deploy --network sepolia
    ```
 
 2. 更新前端 `scaffold.config.ts` 文件，并重新启动前端应用：
@@ -119,28 +135,21 @@ yarn start
 
 ---
 
-### 5. 常见问题
+### 6. 常见问题
 
 #### 问题 1：无法连接到 Hardhat 本地链？
-
 **解决方案**：
-
 - 确保 `yarn chain` 已正确运行。
 
 #### 问题 2：前端无法正常展示 NFT 数据？
-
 **解决方案**：
-
 - 确保合约已正确部署，并检查前端是否使用了最新的 ABI 文件。
 
 #### 问题 3：遇到 `out of gas` 错误？
-
 **解决方案**：
-
 - 尝试增加部署时的 gas 限制，例如在 `yarn deploy` 时使用 `--gas-limit` 参数。
 
-
-### 8. 许可证
+### 9. 许可证
 
 本项目基于 MIT 许可证开源，详细内容请查阅 `LICENSE` 文件。
 
